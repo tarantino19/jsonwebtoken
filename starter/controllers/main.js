@@ -1,4 +1,3 @@
-
 const jwt = require('jsonwebtoken')
 const customAPIError = require('../errors/custom-error')
 
@@ -11,10 +10,10 @@ const login = async (req, res) => {
     throw new customAPIError ('Please provide the correct email and password', 400)
   }
   //demo, normally provided by db
-  const id = newDate().getDate()
+  const id = new Date().getDate()
 
   //in production, use long complex unguessable strings - only put it in the server, never let anyone access this
-  const token = jwt.sign({username, id}, process.env.JWT_SECRET, {expiresIn: "30d"})
+  const token = jwt.sign({username, id}, process.env.JWT_SECRET, {expiresIn: '30d'})
 
   res.status(200).json({msg: 'user created', token})
 }
