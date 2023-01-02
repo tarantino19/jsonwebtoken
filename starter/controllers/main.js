@@ -14,7 +14,7 @@ const login = async (req, res) => {
   const id = newDate().getDate()
 
   //in production, use long complex unguessable strings - only put it in the server, never let anyone access this
-  const token = jwt.sign({username, id}, process.env.SECRET, {expiresIn: 60*60})
+  const token = jwt.sign({username, id}, process.env.JWT_SECRET, {expiresIn: "30d"})
 
   res.status(200).json({msg: 'user created', token})
 }
